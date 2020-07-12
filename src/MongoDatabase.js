@@ -1,5 +1,10 @@
 const Mongo = require('mongodb');
 
+const DEFAULT_CONNECTION_OPTIONS = {
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
+};
+
 /**
  * @param connectionString {String} MongoDB Connection String
  * @param connectionOptions {Object} MongoDB Connection Options (defaults are used here)
@@ -15,19 +20,15 @@ class MongoDatabase {
   database = "";
   collection = "";
 
-  defaultConnectionOptions = {
-    useUnifiedTopology: true,
-    useNewUrlParser: true,
-  }
-
   constructor(connectionString, connectionOptions, database, collection) {
     this.database = database ? database : "";
     this.collection = collection ? collection : "";
     this.connectionString = connectionString ? connectionString : "";
-    this.connectionOptions = connectionOptions ? {
-      ...this.defaultConnectionOptions,
+    this.connectionOptions = {
+      ...DEFAULT_CONNECTION_OPTIONS,
       ...connectionOptions,
-    } : this.defaultConnectionOptions;
+    }
+    // this.connectionOptions = connectionOptions ? { ...DEFAULT_CONNECTION_OPTIONS, ...connectionOptions } : DEFAULT_CONNECTION_OPTIONS;
   }
 
   async connect () {
