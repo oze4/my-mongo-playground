@@ -74,23 +74,3 @@ class MongoDatabase {
     return this.collection === "" ? col : this.collection;
   }
 }
-
-async function a() {
-  const str = process.env.MONGO_CONNECTION_STRING || "mongodb+srv://oze:Picante@mdb-0-fxohe.azure.mongodb.net/test?retryWrites=true&w=majority";
-  const mdb = new MongoDatabase(str);
-
-  try {
-    await mdb.connect();
-    const datas = await mdb.getAllDocuments("test", "Testing");
-    console.log(datas);
-    console.log("\r\n\r\nDone.\r\n");
-    mdb.close();
-  } catch (err) {
-    console.trace(err);
-    mdb.close();
-  }
-}
-
-(async () => {
-  await a();
-})();
