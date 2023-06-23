@@ -11,6 +11,6 @@
   "license": "ISC",
   "dependencies": {
     "dotenv": "^8.2.0",
-    "mongodb": "^3.5.9"
+    "mongodb": "^3.7.4"
   }
 }
